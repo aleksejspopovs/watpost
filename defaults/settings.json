@@ -1,0 +1,51 @@
+{
+	"__comment": "Since JSON doesn't support comments, values with key __comment are used as comments in this file.",
+
+	"__comment": "General settings",
+
+	"__comment": "whether to merge all states into one list or display a",
+	"__comment": "separate list for each carrier",
+	"merge_states": false,
+
+	"__comment": "display this many most recent states",
+	"__comment": "specify -1 to display all states",
+	"displayed_state_count": 1,
+
+	"__comment": "the ordering of the states",
+	"__comment": "possible values are desc for descending (more recent first) and asc for ascending (older first)",
+	"state_order": "asc",
+
+	"__comment": "Output styling",
+
+	"__comment": "Output format",
+	"__comment": "the only available variable is parcels, which consists of all the data for all",
+	"__comment": "the parcels joined with parcel_separator",
+	"output_format": "{parcels}\n",
+
+	"__comment": "Parcel format",
+	"__comment": "available variables are: tracking, data",
+	"__comment": "if merge_states is true, data consists of states joined with state_separator",
+	"__comment": "otherwise, it consists of carriers joined with carrier_separator",
+	"parcel_format": "{tracking}:\n{data}",
+	"parcel_separator": "\n",
+
+	"__comment": "carrier format",
+	"__comment": "available variables are: fullname, shortname, states",
+	"__comment": "states consists of states joined with state_separator",
+	"carrier_format": "  {shortname}: {states}",
+	"carrier_separator": "\n",
+
+	"__comment": "State format",
+	"__comment": "available variables are: state, datetime, location, carrierfull, carriershort",
+	"state_format": "{state}",
+	"state_separator": "\n",
+
+	"__comment": "the message to be shown when there's no data available",
+	"__comment": "this should probably follow the format of state_format,",
+	"__comment": "as it will be displayed in place of a state.",
+	"no_data_message": "No data",
+
+	"__comment": "date & time format",
+	"__comment": "for specification, see http://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior",
+	"datetime_format": "%d.%m %H:%M"
+}
