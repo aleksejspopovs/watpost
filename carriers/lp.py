@@ -3,7 +3,7 @@ import sys
 import requests, bs4
 import datetime, pytz
 import re
-import bases
+from . import bases
 
 class LP(bases.PostService):
 	@staticmethod
@@ -17,7 +17,7 @@ class LP(bases.PostService):
 		postdata = {
 			'fid': tracking
 		}
-		r = requests.post('http://www.manspasts.lv/webtracking_test/?' +
+		r = requests.post('https://www.manspasts.lv/webtracking_test/?' +
 			'lang=en&' +
 			'webtracking2=find', data=postdata)
 		response = r.text
@@ -27,7 +27,7 @@ class LP(bases.PostService):
 		# what's the point of these session IDs, anyway?
 		uid = response[response.index('uid=') + 4:response.index('uid=') + 4 + 32]
 
-		r = requests.get('http://www.manspasts.lv/webtracking_test/ipsweb.php?lang=en&fid={tr}&uid={uid}'.format(tr=tracking, uid=uid))
+		r = requests.get('https://www.manspasts.lv/webtracking_test/ipsweb.php?lang=en&fid={tr}&uid={uid}'.format(tr=tracking, uid=uid))
 		r.encoding = 'utf-8'
 		soup = bs4.BeautifulSoup(r.text)
 

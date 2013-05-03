@@ -4,7 +4,7 @@ import requests
 from lxml import etree
 import datetime, locale, pytz
 import re
-import bases
+from . import bases
 
 server_url = 'http://production.shippingapis.com/ShippingAPI.dll'
 # I honestly have no idea if USPS are going to ban my API key for publishing it or not.
