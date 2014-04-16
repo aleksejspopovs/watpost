@@ -36,6 +36,7 @@ class LP(bases.PostService):
 			return []
 
 		results = []
+		tz = pytz.timezone('Europe/Riga')
 		for line in soup('tr'):
 			# we ignore the header and the footer
 			if line.td == None:
@@ -44,7 +45,7 @@ class LP(bases.PostService):
 			columns = line('td')
 			# why does dealing with dates have to be so painful?
 			# anyway, this parses the provided date as Europe/Riga and returns the corresponding date in UTC
-			parsed_date = pytz.timezone('Europe/Riga').localize(datetime.datetime.strptime(columns[0].text, '%d.%m.%Y %H:%M:%S')).astimezone(pytz.utc)
+			parsed_date = tz.localize(datetime.datetime.strptime(columns[0].text, '%d.%m.%Y %H:%M:%S')).astimezone(pytz.utc)
 			location = columns[1].text + ' — ' + columns[2].text
 			state = columns[3].text
 			results.append(bases.ParcelState(parsed_date, location, state))

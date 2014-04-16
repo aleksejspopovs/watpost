@@ -46,7 +46,7 @@ class USPS(bases.PostService):
 		r = requests.get(server_url + \
 			'?API=TrackV2&XML=<TrackFieldRequest USERID="{userid}"><TrackID ID="{tr}"></TrackID></TrackFieldRequest>'.format(tr=tracking, userid=api_username))
 
-		xml = etree.fromstring(r.text)
+		xml = etree.fromstring(bytes(r.text, r.encoding))
 		if (len(xml[0]) == 0) or (xml[0][0].tag == 'Error'):
 			return []
 		res = [USPS.parse_event(e) for e in xml[0]]
